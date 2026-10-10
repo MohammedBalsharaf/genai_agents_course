@@ -176,6 +176,21 @@ Pre-read: `module02/reading_reasoning.md` (10 minutes). Terms: `module02/terms_s
 200,000-a-day limit; answers are remembered on disk (`~/.genai_course/`), so re-running a cell is free. Your submission is `experiments/s15_accuracy_table.md`
 and version-2 entries in `prompts/library.md`, both pushed to **your own** `genai-course-work` repository.
 
+## Session 16 — structured prompting: tags, templates, and a system prompt in a file
+
+```powershell
+git pull
+uv sync                                  # no new packages (Jinja2 already comes with Jupyter)
+uv run jupyter lab module02/s16_structured.ipynb
+$env:WORK_REPO = "$HOME\Documents\genai-course-work"
+uv run pytest tests/test_s16.py -rs      # checkpoint: your classifier needs 16/20 on the held-out set
+```
+Pre-read: `module02/reading_structured.md` (10 minutes). Terms: `module02/terms_s16.md`. The customer-support classifier (card, loan, account, other): customer text inside
+`<ticket>` tags, a Jinja template with variables, and the system prompt as a file loaded at runtime. **Budget:** about 40,000-70,000 tokens of a free key's
+200,000-a-day limit; answers are remembered on disk (`~/.genai_course/`), so re-running an unchanged cell is free. Your submission is `prompts/support_classifier/system.md`,
+`prompts/support_classifier/user.j2` and `experiments/s16_heldout.md`, pushed to **your own** `genai-course-work` repository. The checkpoint test is skipped without a key
+(read the reason with `-rs`: a skip is not a pass) and fails on purpose with a key but no `WORK_REPO`.
+
 ## Layout
 ```
 module01/                   Session 9b notebook, helpers, pre-read
@@ -191,7 +206,8 @@ tests/test_s12.py           Session 12 checkpoint
 tests/test_s13.py           Session 13 checkpoint
 tests/test_s14.py           Session 14 checkpoint
 tests/test_s15.py           Session 15 checkpoint
-module02/                   Module 2 (prompt engineering): S14-S15 notebooks, helpers, work-repo steps
+tests/test_s16.py           Session 16 checkpoint
+module02/                   Module 2 (prompt engineering): S14-S16 notebooks, helpers, work-repo steps
 cheatsheet/python-for-agents.md
 .env.example                copy to .env
 pyproject.toml              pinned dependencies (uv sync)
